@@ -23,15 +23,22 @@ app.use(helmet.contentSecurityPolicy({
   }
 }));
 
-
-
-
-
-
-
-
-
-
+// Configure Helmet middleware using a configuration object
+app.use(helmet({
+  frameguard: {         // configure
+    action: 'deny'
+  },
+// Specify the options for individual middleware
+  contentSecurityPolicy: {    // enable and configure
+    // Enable contentSecurityPolicy middleware
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ['style.com'],
+    }
+  },
+  dnsPrefetchControl: false,     // disable
+  noCache: true, // Enable noCache middleware
+}))
 
 
 
